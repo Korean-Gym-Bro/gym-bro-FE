@@ -13,11 +13,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Update and push to Forked Repo
         env:
           DEST_REPO: github.com/Sunja-An/gym-bro-FE.git
           TARGET_BRANCH: main
         run: |
-          git remote add fork https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@$DEST_REPO
+          git remote add fork https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@$DEST_REPO
           git push fork HEAD:$TARGET_BRANCH -f
