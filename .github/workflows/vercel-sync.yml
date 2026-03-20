@@ -3,7 +3,7 @@ name: Sync to Fork for Vercel Deployment
 on:
   push:
     branches:
-      - main # 배포 기준이 되는 브랜치명으로 변경하세요 (예: master, develop 등)
+      - main
 
 jobs:
   sync:
