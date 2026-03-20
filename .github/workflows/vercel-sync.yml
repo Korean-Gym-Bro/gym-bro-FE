@@ -1,0 +1,23 @@
+name: Sync to Fork for Vercel Deployment
+
+on:
+  push:
+    branches:
+      - main # 배포 기준이 되는 브랜치명으로 변경하세요 (예: master, develop 등)
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update and push to Forked Repo
+        env:
+          DEST_REPO: github.com/Sunja-An/gym-bro-FE.git
+          TARGET_BRANCH: main
+        run: |
+          git remote add fork https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@$DEST_REPO
+          git push fork HEAD:$TARGET_BRANCH -f
